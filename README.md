@@ -14,5 +14,5 @@
 
 # Instruções
 	1. Renomear seu arquivo JSON de credenciais para "cloud-bigquery.json" e salva-lo na pasta "/credentials" do projeto.
-	2. Criar um bucket chamado ''
+	2. No arquivo "InsertData.py", altere as variáveis inserindo os caminhos do seu GCP.
 	2. Utilize o comando python "InsertData.py" para rodar o script do pipeline.
