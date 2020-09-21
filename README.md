@@ -1,7 +1,7 @@
 # GCPproject
 	Projeto com o objetivo de consumir arquivos JSON e carregar os dados para o Google BigQuery.
 
-# Instalar as bibliotecas do cloud-storage:
+# Instalar as bibliotecas do cloud-storage e pandas:
 	pip install --upgrade google-cloud-storage
 	pip install --upgrade google-cloud-bigquery
 	pip install --upgrade pandas
@@ -14,4 +14,5 @@
 
 # Instruções
 	1. Renomear seu arquivo JSON de credenciais para "cloud-bigquery.json" e salva-lo na pasta "/credentials" do projeto.
+	2. Criar um bucket chamado ''
 	2. Utilize o comando python "InsertData.py" para rodar o script do pipeline.

@@ -3,15 +3,19 @@ from google.cloud import storage
 class StorageFuncs():
     # Atributos padrões:
     __CREDENTIALS_FILE = 'credentials/cloud-bigquery.json'
-    __BUCKET_NAME = 'cloud_project-1'
 
     @classmethod
-    def uploadObjectIntoBucket(self, input_file, storage_file_name):
+    def uploadObjectIntoBucket(self, bucket_name, input_file, storage_file_name):
+        ''' Faz o upload do objeto no bucket. 
+        \nO paramêtro "bucket_name" recebe uma string o nome do bucket criado no storage
+        \nO paramêtro "input_file" recebe uma string com o caminho do arquivo de dados
+        \nO paramêtro "storage_file_name" recebe uma string com o nome do arquivo que será criado no bucket'''
+
         # Criando cliente do storage:
         storage_client = storage.Client.from_service_account_json(self.__CREDENTIALS_FILE)
 
         # Definindo o bucket e o arquivo de destino:
-        bucket = storage_client.bucket(self.__BUCKET_NAME)
+        bucket = storage_client.bucket(bucket_name)
         blob = bucket.blob(storage_file_name)
 
         # Fazendo upload do arquivo:
@@ -24,8 +28,8 @@ class StorageFuncs():
             raise inst
 
         # Listando conteudo do bucket:
-        print(' -> Bucket: {}'.format(self.__BUCKET_NAME))
+        print(' -> Bucket: {}'.format(bucket_name))
         print('  -> Objetos do bucket:')
-        bucket_blobs = storage_client.list_blobs(self.__BUCKET_NAME)
+        bucket_blobs = storage_client.list_blobs(bucket_name)
         for obj in bucket_blobs:
                 print('     * {}'.format(obj.name))

@@ -8,8 +8,9 @@ class JsonFuncs():
 
     @classmethod
     def createBQFormattedJson(self, input_file, output_file):
-        ''' Crian arquivo JSON formatado para o BigQuery 
-        \nO paramêtro "input_file" e "output_file" recebem STRING'''
+        ''' Criando arquivo JSON formatado para o BigQuery 
+        \nO paramêtro "input_file" recebe uma string com o caminho do arquivo de dados
+        \nO paramêtro "output_file" recebe uma string com o caminho do arquivo de saída formatado'''
         try:
             df = pd.read_json(input_file)
             print(' -> Arquivo carregado com sucesso! INPUT_FILE= {}'.format(input_file))
