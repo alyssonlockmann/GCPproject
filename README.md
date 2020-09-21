@@ -1,5 +1,5 @@
 # GCPproject
-	Projeto com o objetico de consumir arquivos JSON e carregar os dados apra o Google BgQuery 
+	Projeto com o objetivo de consumir arquivos JSON e carregar os dados para o Google BigQuery.
 
 # Instalar as bibliotecas do cloud-storage:
 	pip install --upgrade google-cloud-storage
