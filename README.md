@@ -13,4 +13,5 @@
 		- https://cloud.google.com/iam/docs/granting-roles-to-service-accounts?hl=pt-br
 
 # Instruções
-Utilize o comando python "InsertData.py" para rodar o script do pipeline.
+	1. Renomear seu arquivo JSON de credenciais para "cloud-bigquery.json" e salva-lo na pasta "/credentials" do projeto.
+	2. Utilize o comando python "InsertData.py" para rodar o script do pipeline.
