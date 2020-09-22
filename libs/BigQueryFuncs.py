@@ -5,7 +5,7 @@ class BigQueryFuncs():
     __CREDENTIALS_FILE = 'credentials/cloud-bigquery.json'
 
     # Construção do cliente BigQuery:
-    client = bigquery.Client.from_service_account_json(__CREDENTIALS_FILE)
+    __client = bigquery.Client.from_service_account_json(__CREDENTIALS_FILE)
 
     @classmethod
     def loadPostTableData(self, storage_file, bucket, project, dataset):
@@ -36,7 +36,7 @@ class BigQueryFuncs():
         # Solicitando a criação da tabela via API:
         print(' -> Carregando dados na tabela {} ...'.format(table_id))
         try:
-            load_job = self.client.load_table_from_uri(
+            load_job = self.__client.load_table_from_uri(
                 uri_file, 
                 table_id, 
                 job_config=job_config
@@ -62,7 +62,7 @@ class BigQueryFuncs():
             LIMIT {}
         """.format(table_id, lines)
         try:
-            query_job = self.client.query(query)
+            query_job = self.__client.query(query)
         except Exception as inst:
             print('*** Erro ao executar query!!!')
             raise inst
