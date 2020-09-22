@@ -1,6 +1,10 @@
 # GCPproject
 	Projeto com o objetivo de consumir arquivos JSON e carregar os dados para o Google BigQuery.
 
+# Configurações do ambiente:
+	1. Windows 10 Home
+	2. Python 3.7.8
+	
 # Instalar as bibliotecas do cloud-storage e pandas:
 	pip install --upgrade google-cloud-storage
 	pip install --upgrade google-cloud-bigquery
