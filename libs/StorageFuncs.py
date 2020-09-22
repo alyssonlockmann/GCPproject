@@ -4,6 +4,7 @@ class StorageFuncs():
     # Atributos padrões:
     __CREDENTIALS_FILE = 'credentials/cloud-bigquery.json'
 
+
     @classmethod
     def uploadObjectIntoBucket(self, bucket_name, input_file, storage_file_name):
         ''' Faz o upload do objeto no bucket. 
@@ -33,3 +34,4 @@ class StorageFuncs():
         bucket_blobs = storage_client.list_blobs(bucket_name)
         for obj in bucket_blobs:
                 print('     * {}'.format(obj.name))
+        

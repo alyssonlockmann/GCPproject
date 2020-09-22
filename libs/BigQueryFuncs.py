@@ -6,16 +6,20 @@ class BigQueryFuncs():
 
     # Construção do cliente BigQuery:
     client = bigquery.Client.from_service_account_json(__CREDENTIALS_FILE)
-    
+
     @classmethod
-    def loadPostTableData(self, storage_file, uri, dataset_id):
+    def loadPostTableData(self, storage_file, bucket, project, dataset):
         ''' Carrega dados na tabela posts_table. 
         \nO paramêtro "storage_file" recebe uma string com o nome do arquivo no bucket.
-        \nO paramêtro "uri" recebe uma string com o caminho do bucket no storage.
-        \nO paramêtro "dataset_id" recebe uma string com o nome do dataset.'''
+        \nO paramêtro "bucket" recebe uma string com o nome do bucket.
+        \nO paramêtro "project" recebe uma string com o nome do projeto.
+        \nO paramêtro "dataset" recebe uma string com o nome do dataset.'''
+
+        # Criando uri:
+        uri_file = 'gs://{}/{}'.format(bucket,storage_file)
 
         # Criando table_id:
-        table_id = dataset_id + '.posts_table'
+        table_id = '{}.{}.{}'.format(project , dataset , 'posts_table')
 
         # Configurando campos:
         job_config = bigquery.LoadJobConfig(
@@ -30,10 +34,10 @@ class BigQueryFuncs():
         )
 
         # Solicitando a criação da tabela via API:
-        print(' -> Carregando dados na tabela {} {}...'.format(table_id, self.__name__))
+        print(' -> Carregando dados na tabela {} ...'.format(table_id))
         try:
             load_job = self.client.load_table_from_uri(
-                uri + storage_file, 
+                uri_file, 
                 table_id, 
                 job_config=job_config
             )
@@ -41,16 +45,27 @@ class BigQueryFuncs():
             print(' -> Job finalizado com sucesso!')
 
         except Exception as inst:
-            print('*** Erro ao carregar dados na tabela {} \n*** Arquivo origem: {} \n*** Erro no job: {}'.format(table_id, uri, load_job.path))
+            print('*** Erro ao carregar dados na tabela {} \n*** Arquivo origem: {} \n*** Erro no job: {}'.format(table_id, uri_file, load_job.path))
             raise inst
         
     @classmethod
-    def listPostsTableRows(self, lines, dataset_id):
+    def listPostsTableRows(self, lines, project, dataset):
         ''' Lista N linhas da tabela posts_table.
         \n O paramêtro "lines" recebe inteiro com o nr de linhas.
-        \n O paramêtro "dataset_id" recebe inteiro com o com o nome do dataset.'''
+        \n O paramêtro "project" recebe uma string com o com o nome do projeto.
+        \n O paramêtro "dataset" recebe uma string com o com o nome do dataset.'''
 
-        table_id = dataset_id + '.posts_table'
-        explain_table = self.client.list_rows(table_id,max_results=lines)
-        for row in explain_table:
-            print('     * Linha: {}'.format(row))
+        table_id = '{}.{}.{}'.format(project, dataset, 'posts_table')
+        query = """
+            SELECT *
+            FROM {}
+            LIMIT {}
+        """.format(table_id, lines)
+        try:
+            query_job = self.client.query(query)
+        except Exception as inst:
+            print('*** Erro ao executar query!!!')
+            raise inst
+
+        for row in query_job:
+            print("* Ids: {}  Email: {}".format(row['id'], row['email']))
