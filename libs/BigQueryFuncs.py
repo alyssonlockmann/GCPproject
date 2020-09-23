@@ -1,11 +1,13 @@
 from google.cloud import bigquery
 
 class BigQueryFuncs():
+    
     # Atributos padrões:
     __CREDENTIALS_FILE = 'credentials/cloud-bigquery.json'
 
     # Construção do cliente BigQuery:
     __client = bigquery.Client.from_service_account_json(__CREDENTIALS_FILE)
+
 
     @classmethod
     def loadPostTableData(self, storage_file, bucket, project, dataset):
@@ -48,6 +50,7 @@ class BigQueryFuncs():
             print('*** Erro ao carregar dados na tabela {} \n*** Arquivo origem: {} \n*** Erro no job: {}'.format(table_id, uri_file, load_job.path))
             raise inst
         
+
     @classmethod
     def listPostsTableRows(self, lines, project, dataset):
         ''' Lista N linhas da tabela posts_table.
