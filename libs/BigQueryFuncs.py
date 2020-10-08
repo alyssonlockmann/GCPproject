@@ -10,7 +10,7 @@ class BigQueryFuncs():
 
 
     @classmethod
-    def loadPostTableData(self, storage_file, bucket, project, dataset):
+    def load_post_table_data(self, storage_file, bucket, project, dataset):
         ''' Carrega dados na tabela posts_table. 
         \nO paramêtro "storage_file" recebe uma string com o nome do arquivo no bucket.
         \nO paramêtro "bucket" recebe uma string com o nome do bucket.
@@ -52,7 +52,7 @@ class BigQueryFuncs():
         
 
     @classmethod
-    def listPostsTableRows(self, lines, project, dataset):
+    def list_posts_table_rows(self, lines, project, dataset):
         ''' Lista N linhas da tabela posts_table.
         \n O paramêtro "lines" recebe inteiro com o nr de linhas.
         \n O paramêtro "project" recebe uma string com o com o nome do projeto.

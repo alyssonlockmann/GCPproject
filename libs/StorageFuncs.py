@@ -10,7 +10,7 @@ class StorageFuncs():
 
 
     @classmethod
-    def uploadObjectIntoBucket(self, bucket_name, input_file, storage_file_name):
+    def upload_object_into_bucket(self, bucket_name, input_file, storage_file_name):
         ''' Faz o upload do objeto no bucket. 
         \nO paramêtro "bucket_name" recebe uma string o nome do bucket criado no storage
         \nO paramêtro "input_file" recebe uma string com o caminho do arquivo de dados

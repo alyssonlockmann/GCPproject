@@ -16,17 +16,17 @@ bq_project = 'cloud-storage-289515' #--- Altera para o teu projeto no BigQuery
 bq_dataset = 'storage_dataset' #--- Altere para o teu dataset no BigQuery
 
 # Criando arquivo JSON formatado para o BigQuery:
-print('Chamando método: {} da classe: {} '.format(js.JsonFuncs.__name__, js.JsonFuncs.createBQFormattedJson.__name__))
-js.JsonFuncs.createBQFormattedJson(input_file,output_file)
+print('Chamando método: {} da classe: {} '.format(js.JsonFuncs.__name__, js.JsonFuncs.create_bq_formatted_json.__name__))
+js.JsonFuncs.create_bq_formatted_json(input_file,output_file)
 
 # Fazendo upload do arquivo para o bucket:
-print('Chamando método: {} da classe: {} '.format(st.StorageFuncs.uploadObjectIntoBucket.__name__, st.StorageFuncs.__name__))
-st.StorageFuncs.uploadObjectIntoBucket(storage_bucket, input_formatted_file, storage_file_name)
+print('Chamando método: {} da classe: {} '.format(st.StorageFuncs.upload_object_into_bucket.__name__, st.StorageFuncs.__name__))
+st.StorageFuncs.upload_object_into_bucket(storage_bucket, input_formatted_file, storage_file_name)
 
 # Carregando dados na tabela do BigQuery:
-print('Chamando método: {} da classe: {} '.format(bf.BigQueryFuncs.loadPostTableData.__name__, bf.BigQueryFuncs.__name__))
-bf.BigQueryFuncs.loadPostTableData(storage_file_name, storage_bucket, bq_project, bq_dataset)
+print('Chamando método: {} da classe: {} '.format(bf.BigQueryFuncs.load_post_table_data.__name__, bf.BigQueryFuncs.__name__))
+bf.BigQueryFuncs.load_post_table_data(storage_file_name, storage_bucket, bq_project, bq_dataset)
 
 # Listando N linhas da tabela posts_table:
-print('Chamando método: {} da classe: {} '.format(bf.BigQueryFuncs.listPostsTableRows.__name__, bf.BigQueryFuncs.__name__))
-bf.BigQueryFuncs.listPostsTableRows(5, bq_project, bq_dataset)
+print('Chamando método: {} da classe: {} '.format(bf.BigQueryFuncs.list_posts_table_rows.__name__, bf.BigQueryFuncs.__name__))
+bf.BigQueryFuncs.list_posts_table_rows(5, bq_project, bq_dataset)

@@ -5,7 +5,7 @@ class JsonFuncs():
 
 
     @classmethod
-    def createBQFormattedJson(self, input_file, output_file):
+    def create_bq_formatted_json(self, input_file, output_file):
         ''' Criando arquivo JSON formatado para o BigQuery 
         \nO paramêtro "input_file" recebe uma string com o caminho do arquivo de dados
         \nO paramêtro "output_file" recebe uma string com o caminho do arquivo de saída formatado'''
